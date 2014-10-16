@@ -4,7 +4,7 @@
   <title><![CDATA[EmaLou's Blog]]></title>
   <link href="http://emalou.me/atom.xml" rel="self"/>
   <link href="http://emalou.me/"/>
-  <updated>2014-10-16T11:09:53+08:00</updated>
+  <updated>2014-10-16T16:42:19+08:00</updated>
   <id>http://emalou.me/</id>
   <author>
     <name><![CDATA[EmaLou]]></name>
@@ -39,7 +39,7 @@
 <p>这里就有两个概念了：<strong>源代码</strong> &amp; <strong>部署代码</strong>。
 clone过<a href="https://github.com/imathis/octopress">octopress的代码</a>到本地后，cd到该目录下</p>
 
-<p><img src="../images/octopressDir.png" alt="screen shot" /></p>
+<p><img src="http://emalou.me/images/octopressDir.png"></p>
 
 <p>会发现有一个source和_deploy的目录，这两个目录下分别存放着上面提到的两个概念中的代码。</p>
 
