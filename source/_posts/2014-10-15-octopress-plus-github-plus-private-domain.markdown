@@ -11,6 +11,7 @@ categories:
 
 ---
 <br>
+
 ###一号坑: 企图手动去改octopress的模板发现改错了
 
 [octopress](http://octopress.org/)是用rails写的一款快速搭建博客的工具.
@@ -21,7 +22,7 @@ categories:
 这里就有两个概念了：**源代码** & **部署代码**。
 clone过[octopress的代码](https://github.com/imathis/octopress)到本地后，cd到该目录下
 
-![screen shot](../images/octopressDir.png)
+{% img /images/octopressDir.png %}
 
 会发现有一个source和_deploy的目录，这两个目录下分别存放着上面提到的两个概念中的代码。
 
