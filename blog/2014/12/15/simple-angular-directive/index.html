@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>EmaLou&#8217;s Blog</title>
+  <title>Simple Angular Directive - EmaLou&#8217;s Blog</title>
   <meta name="author" content="EmaLou">
 
   
@@ -20,7 +20,7 @@ directive,中文翻译是指令。
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://emalou.me">
+  <link rel="canonical" href="http://emalou.me/blog/2014/12/15/simple-angular-directive">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="EmaLou's Blog" type="application/atom+xml">
@@ -66,18 +66,15 @@ directive,中文翻译是指令。
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
   
     
-      <h1 class="entry-title"><a href="/blog/2014/12/15/simple-angular-directive/">Simple Angular Directive</a></h1>
-      
-      
+      <h1 class="entry-title">Simple Angular Directive</h1>
+    
+  
     
       <p class="meta">
         
@@ -94,14 +91,14 @@ directive,中文翻译是指令。
 
 <time datetime="2014-12-15T20:28:44+08:00" pubdate data-updated="true"></time>
         
-         | <a href="/blog/2014/12/15/simple-angular-directive/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>angular directive</p>
+<div class="entry-content"><p>angular directive</p>
 
 <p>angular有很多优良特性，其中很重要的一点是directive
 directive,中文翻译是指令。
@@ -225,24 +222,16 @@ html:</p>
 
 <p>答：好！</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
   
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/05/use-ssh-setup-local-git-repo/">使用ssh搭建本地git仓库</a></h1>
+
+<span class="byline author vcard">Posted by <span class="fn">EmaLou</span></span>
+
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -254,150 +243,38 @@ html:</p>
   
 
 
-<time datetime="2014-11-05T00:00:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2014/11/05/use-ssh-setup-local-git-repo/#disqus_thread">Comments</a>
-        
-      </p>
+<time datetime="2014-12-15T20:28:44+08:00" pubdate data-updated="true"></time>
+      
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>最近由于工作需要，笔者准备在本地局域网中搭建git库，经过授权的本地用户就可以在该库上进行提交，展开工作。</p>
-
-<p>搭建git库很简单，选一台机器作为本地git服务器，建好文件夹，运行</p>
-
-<pre><code>git init
-</code></pre>
-
-<p>现在问题来了，如何进行授权。</p>
-
-<p>我们都知道文件传输需要文件传输协议，git pull，git push本质上也都是在进行文件操作，这也是一种文件传输。</p>
-
-<p>常用的传输协议有 http, ssh 等，笔者本次使用了ssh作为传输协议。</p>
-
-<p>在本地ssh目录下有一些成对的key，选择其中一个公钥（以.pub结尾的文件），将文件中的内容append到服务器的ssh目录下，一个叫authticate的文件中。</p>
-
-<p>顾名思义，这个文件是用来授权用户的，加进公钥后表明服务器跟clint机器建通过ssh协议建立了连接。但是这还不够。ssh协议的使用是通过一对秘钥进行工作的，公钥是锁，私钥则相当于钥匙。上一步的操作是把锁给了服务器，那么下一步就要指定开这把锁的钥匙。</p>
-
-<p>client机器上，同样是.ssh目录下，在config文件（如果没有就touch一个）里配置</p>
-
-<pre><code>Hostname 10.29.*.**
-IdentityFile ~/.ssh/local_git
-</code></pre>
-
-<p>Hostname是服务器的IP，IdentityFile是每次跟这台服务器通信时需要的私钥。</p>
-
-<p>至此，就可以在client机器上git clone 服务器上的代码了。</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://emalou.me/blog/2014/12/15/simple-angular-directive/" data-via="" data-counturl="http://emalou.me/blog/2014/12/15/simple-angular-directive/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-  
     
-      <h1 class="entry-title"><a href="/blog/2014/10/15/octopress-plus-github-plus-private-domain/">使用Octopress搭建博客的那些坑</a></h1>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/11/05/use-ssh-setup-local-git-repo/" title="Previous Post: 使用ssh搭建本地git仓库">&laquo; 使用ssh搭建本地git仓库</a>
       
       
-    
-      <p class="meta">
-        
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-10-15T17:55:54+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2014/10/15/octopress-plus-github-plus-private-domain/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近用octopress和github page搭建了一个简单的个人博客，跟自己的域名绑定起来。
-搭建方法google一抓一大把，这里就简要赘述一下这个过程中遇到的几个坑吧。</p>
-
-<hr />
-
-<p><br></p>
-
-<h3>一号坑: 企图手动去改octopress的模板发现改错了</h3>
-
-<p><a href="http://octopress.org/">octopress</a>是用rails写的一款快速搭建博客的工具.
-源码使用markdown和scss编写，在部署前用以下命令自动生成html，css等静态网页：</p>
-
-<pre><code>rake generate
-</code></pre>
-
-<p>这里就有两个概念了：<strong>源代码</strong> &amp; <strong>部署代码</strong>。
-clone过<a href="https://github.com/imathis/octopress">octopress的代码</a>到本地后，cd到该目录下</p>
-
-<p><img src="/images/octopressDir.png"></p>
-
-<p>会发现有一个source和_deploy的目录，这两个目录下分别存放着上面提到的两个概念中的代码。</p>
-
-<p>上面提到了，octopress中需要手动编写的代码是源码，所以需要改动代码的时候，或者发表博文，所有的修改都应该在这个目录下进行。
-而非修改_deploy目录下的html，css等.</p>
-
-<p>修改结束用，在本地使用</p>
-
-<pre><code>rake generate
-</code></pre>
-
-<p>生成部署所需的静态网页代码后，</p>
-
-<pre><code>rake preview
-</code></pre>
-
-<p>运行以上命令，就可以在本地localhost：4000 查看修改结果了。</p>
-
-<h3>二号坑： 绑定域名的时候CNAME无法提交到github</h3>
-
-<p>我们都知道，使用github page来搭建博客，当需要绑定独立域名时，<br>
-只要在该repo下添加CNAME文件，并将独立域名写进去再提交，就绑定成功了。<br></p>
-
-<p>笔者按照常用方法添加CNAME后，却发现无法提交到github上。<br>
-那么问题来了，如果说部署所需的所有代码都是先放到source目录下，再由rake generate生成部署代码，那这个CNAME文件怎么办？<br></p>
-
-<p>既然所有部署代码都来源于source目录，那当然是把CNAME文件也放在source目录下了！<br>
-此时rake generate后，会发现CNAME文件已经乖乖到了_deploy目录下。<br>
-rake deploy 部署后就可以在自己的独立域名下看到github上的博客啦</p>
-
-<p>最后，不要忘记提交代码到github的repo上，记住是提交到source这个branch的。
-因为默认master是存放部署代码的，那么source就用来存放我们手写的源码。</p>
-
-<hr />
-
-<p><br>
-笔者接触octopress时日不多，隐约感觉rakefile是一个很重要的东西，但由于时间关系还未完全吃透其中的命令。
-理解上存在偏差的地方，欢迎指正。</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  
-  
+  </section>
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -426,6 +303,7 @@ rake deploy 部署后就可以在自己的独立域名下看到github上的博�
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -446,7 +324,10 @@ rake deploy 部署后就可以在自己的独立域名下看到github上的博�
       var disqus_shortname = 'emalousblog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://emalou.me/blog/2014/12/15/simple-angular-directive/';
+        var disqus_url = 'http://emalou.me/blog/2014/12/15/simple-angular-directive/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

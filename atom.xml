@@ -4,7 +4,7 @@
   <title><![CDATA[EmaLou's Blog]]></title>
   <link href="http://emalou.me/atom.xml" rel="self"/>
   <link href="http://emalou.me/"/>
-  <updated>2014-11-06T00:17:27+08:00</updated>
+  <updated>2014-12-15T20:30:32+08:00</updated>
   <id>http://emalou.me/</id>
   <author>
     <name><![CDATA[EmaLou]]></name>
@@ -12,6 +12,141 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Simple Angular Directive]]></title>
+    <link href="http://emalou.me/blog/2014/12/15/simple-angular-directive/"/>
+    
+    <updated>2014-12-15T20:28:44+08:00</updated>
+    <id>http://emalou.me/blog/2014/12/15/simple-angular-directive</id>
+    
+    <content type="html"><![CDATA[<p>angular directive</p>
+
+<p>angular有很多优良特性，其中很重要的一点是directive
+directive,中文翻译是指令。
+那么问题来了。。。</p>
+
+<p>问：&#8221;What are Directives?</p>
+
+<p>答：<strong>At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS&rsquo;s HTML compiler ($compile) to attach a specified behavior to that DOM element or even transform the DOM element and its children.&ldquo;</strong> &ndash; AngularJS 官方文档</p>
+
+<p>问：说人话</p>
+
+<p>答：“从高层次来说，指令是一些页面元素的标记，这些标记能够让angular编译器为该元素添加特殊行为，甚至可以转化改元素和其子元素。”</p>
+
+<p>简而言之 - 为DOM元素添加事件。</p>
+
+<p>问：javascript也可以添加事件，为什么要用directive呢？</p>
+
+<p>答：简单方便，最重要的是重用程度实在是高，比刀耕火种的js要高端大气上档次很多。</p>
+
+<p>问：show me</p>
+
+<p>答：看好了！</p>
+
+<p>html:</p>
+
+<pre><code>&lt;input type="text" valid-check &gt;&lt;/input&gt;
+</code></pre>
+
+<p>directive.js:</p>
+
+<pre><code>regApp.directive('validCheck', function(){
+  return {
+    require: 'ngModel',c
+    link: function (scope, element, attr, modelCtrl) {
+        modelCtrl.$validators.validCheck = function (modelValue, viewValue) {
+            if (!modelCtrl.$isEmpty(viewValue)) {
+            if(viewVaule.length !=5)
+               return false;
+             return true;
+            }
+        }
+    }
+}
+})
+</code></pre>
+
+<p>问：看起来好复杂，求解释</p>
+
+<p>答：第一行定义了一个叫做validCheck的directive，这个东东会返回一个对象，require是这个directive需要绑定的model，link方法里可以定义directive的动作。这个例子中link方法在做验证。通过$validators 对象来给directive绑定验证函数，绑定之后，每次改变输入值都会自动调用验证方法进行验证。modelValue和viewValue分别代表model中的值，和页面上view的值。当viewValue不为空的时候才继续下面的验证。最后返回布尔值。</p>
+
+<p>问：听起来不错，挺好用</p>
+
+<p>答：此处有坑，请注意</p>
+
+<p>问：哦？</p>
+
+<p>答：当link方法返回false的时候，model会变成undefined，model中的方法都不会再执行。意味着false的时候这个input上绑定的方法（ng-change等）都不再执行。初学者要注意这一点
+问：总有办法避免吧？</p>
+
+<p>答：聪明！这样写就可以了</p>
+
+<pre><code>&lt;input type="text" valid-check ng-model-options="{allowInvalid: true}"&gt;&lt;/input&gt;
+</code></pre>
+
+<p>当然directive还有很多别的用法，例如绑定键盘事件</p>
+
+<pre><code>regApp.directive('numbersOnly', function(){
+    return function (scope, element, attrs) {
+    element.bind("keypress", function (event) {
+        if (event.which &lt; 48 || event.which &gt; 57) {
+            scope.$apply(function () {
+                scope.$eval(attrs.numbersOnly);
+            });
+            event.preventDefault();
+        }
+    });
+   };
+});
+</code></pre>
+
+<p>上面这段代码就只允许用户输入数字。</p>
+
+<p>directive可以作为元素或者属性添加到DOM中，没错，就像<label> 标签，或者class属性一样。
+html:</p>
+
+<pre><code>&lt;div error-box &gt;&lt;/div&gt;
+</code></pre>
+
+<p>directive.js:</p>
+
+<pre><code>directive('errorBox', function(){
+  return {
+    restrict: 'A';
+    templateUrl: 'error-box.html'
+  }
+}
+</code></pre>
+
+<p>restrict: &lsquo;A&rsquo; 表示可以作为元素属性来应用directive，渲染页面之后error-box.html中的内容会填充到div里。</p>
+
+<p>换一种方式：
+html:</p>
+
+<pre><code>&lt;error-box /&gt;
+</code></pre>
+
+<p>directive.js:</p>
+
+<pre><code>directive('errorBox', function(){
+  return {
+    restrict: 'E';
+    templateUrl: 'error-box.html'
+  }
+}
+</code></pre>
+
+<p>restrict: &lsquo;E&#8217;则表示你在angular的帮助下创建了一个html标签，渲染页面时error-box.html里的内容会替换掉<error-box/> 这个标签</p>
+
+<p>所以说，Directive功能如此强大，和data-binding一起作为angular的灵魂当之无愧。
+有空好好学学。</p>
+
+<p>答：好！</p>
+]]></content>
+    
+  </entry>
   
   <entry>
     
