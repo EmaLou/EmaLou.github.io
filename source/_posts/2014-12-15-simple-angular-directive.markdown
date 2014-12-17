@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Simple Angular Directive"
+title: "浅谈 Angular Directive"
 date: 2014-12-15 20:28:44 +0800
 comments: true
 categories: 
