@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://emalou.me/blog/2014/12/18/talk-about-java-exception/</loc>
+    
+    <lastmod>2014-12-18T00:38:45+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://emalou.me/blog/2014/12/15/simple-angular-directive/</loc>
     
     <lastmod>2014-12-15T20:28:44+08:00</lastmod>
@@ -29,14 +37,14 @@
   
   <url>
     <loc>http://emalou.me/blog/archives/</loc>
-    <lastmod>2014-12-15T20:30:32+08:00</lastmod>
+    <lastmod>2014-12-18T00:44:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://emalou.me/</loc>
-    <lastmod>2014-12-15T20:30:32+08:00</lastmod>
+    <lastmod>2014-12-18T00:44:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
