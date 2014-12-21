@@ -9,7 +9,7 @@
   <meta name="author" content="EmaLou">
 
   
-  <meta name="description" content="“Java中的基本概念是：结构不佳的代码不能运行.” —— 《Java编程思想》 “异常”这个词有“对此感到意外”的意思，异常处理需要处理的部分也正是没有按照预期想法运行的代码。 但是出现错误的地方不一定知道如何处理错误，当前环境中也许没有足够的信息来解决这个“意外”， &hellip;">
+  <meta name="description" content="一： 基本概念 “Java中的基本概念是：结构不佳的代码不能运行.” —— 《Java编程思想》 “异常”这个词有“对此感到意外”的意思，异常处理需要处理的部分也正是没有按照预期想法运行的代码。 但是出现错误的地方不一定知道如何处理错误，当前环境中也许没有足够的信息来解决这个“意外”， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,7 +99,9 @@
   </header>
 
 
-  <div class="entry-content"><p><strong>“Java中的基本概念是：结构不佳的代码不能运行.” </strong>—— 《Java编程思想》</p>
+  <div class="entry-content"><h3>一： 基本概念</h3>
+
+<p><strong>“Java中的基本概念是：结构不佳的代码不能运行.” </strong>—— 《Java编程思想》</p>
 
 <p>“异常”这个词有“对此感到意外”的意思，异常处理需要处理的部分也正是没有按照预期想法运行的代码。</p>
 
@@ -146,6 +148,95 @@
 <p>答案是：如果RuntimeException没有被捕获而直达main()，那么在程序退出前将调用异常的printStackTrace()方法讲堆栈信息打印出来。</p>
 
 <p>异常处理的最后，finally处理那些不管发生什么都一定要被执行的代码。</p>
+
+<h3>二：Practice</h3>
+
+<p>在我们的代码中，如何使用异常呢。</p>
+
+<p>首先需要了解，Exception是java中所有异常类的基类，继承自Throwable。</p>
+
+<p>如果我们需要抛出的异常类能够承载一些信息，那么就需要自定义异常类，并在恰当的时候抛出，而非每次都抛出Exception类。</p>
+
+<p>如果可以用自定义异常解决问题，那么Exception类还有用吗？
+答案是非常有用，看下面的例子。</p>
+
+<pre><code>public void dataAccessCode(){
+    Connection conn = null;
+    try{
+        conn = getConnection();
+    }catch(SQLException ex){
+        ex.printStacktrace();
+        // Handle the exception
+    }catch(Exception e) {
+        e.printStacktrace();
+    } finally{
+        DBUtil.closeConnection(conn);
+    }
+}
+</code></pre>
+
+<p>假设try中的代码抛出很多异常，异常处理时首先catch住SQLException，就会优先处理这个异常。</p>
+
+<p>异常处理过程跟switch-case很相似，不同的是，每当catch住一个异常后就会执行该处的异常处理代码，之后异常处理过程结束。而switch-case中需要在每一个case后添加break语句，防止遍历case语句。</p>
+
+<p>每个异常处理块只会在抛出的异常跟catch中的异常匹配时执行，如果catch中的所有异常都不匹配，而代码又确实抛出了异常，此时catch到Exception的代码就可以工作了。</p>
+
+<p>所以通常在异常处理的最后加上对Exception的catch，防止漏掉某些异常。</p>
+
+<p>那么如何编写自定义异常类呢，下面的例子是最常见的一种做法。</p>
+
+<pre><code>public class AccountNotFoundException extends Exception {
+    public AccountNotFoundException() {
+        super();
+    }
+    public AccountNotFoundException(String message) {
+        super(message);
+    }
+}
+</code></pre>
+
+<p>为自定义异常类添加构造方法，抛出异常类时候添加message，使异常承载更多的信息。</p>
+
+<pre><code>throw new AccountNotFoundException("User");
+// In different place
+throw new AccountNotFoundException("Customer");
+</code></pre>
+
+<p>上面这两个异常被抛出，在异常的catch可以清楚的知道是哪种Account找不到。</p>
+
+<p>如果为异常类添加私有变量和getter方法，如下：</p>
+
+<pre><code>public class AccountNotFoundException extends Exception {
+    private String message;
+    public AccountNotFoundException() {
+        super();
+    }
+    public AccountNotFoundException(String message) {
+        super(message);
+    }
+    public String getMessage(){
+        return this.message;
+    }
+}
+</code></pre>
+
+<p>那么对于不同地方抛出的异常，catch部分就可以根据不同的message而分别处理，如下：</p>
+
+<pre><code>try{
+    //throw AccountNotFoundException
+} catch(AccountNotFoundException e) {
+    if(e.getMessage.equals("User"))
+        // do something for User
+    else if(e.getMessage.equals("Customer"))
+        // do something for Customer
+    else
+        // do something normal
+}
+</code></pre>
+
+<p>不管是自定义异常类，还是处理异常的代码，在写代码的时候think twice，可以帮我们解决很多代码中的问题，并优化代码结构。</p>
+
+<p>对于异常处理，多了解一点，受益良多。</p>
 </div>
   
   
