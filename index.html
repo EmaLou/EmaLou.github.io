@@ -9,7 +9,7 @@
   <meta name="author" content="EmaLou">
 
   
-  <meta name="description" content="一： 基本概念 “Java中的基本概念是：结构不佳的代码不能运行.” —— 《Java编程思想》 “异常”这个词有“对此感到意外”的意思，异常处理需要处理的部分也正是没有按照预期想法运行的代码。 但是出现错误的地方不一定知道如何处理错误，当前环境中也许没有足够的信息来解决这个“意外”， &hellip;">
+  <meta name="description" content="项目需要，最近在用angular做各种validation。 日期验证 这里分享一个日期验证。 github地址：https://github.com/EmaLou/date-validation 看页面(有点丑)：http://emalou.me/date-validation/ 为什么用js， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/10/date-validation/">JavaScript实现的日期验证</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-10T23:08:40+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2015/02/10/date-validation/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>项目需要，最近在用angular做各种validation。</p>
+
+<hr />
+
+<h3>日期验证</h3>
+
+<p>这里分享一个日期验证。</p>
+
+<p>github地址：<a href="https://github.com/EmaLou/date-validation">https://github.com/EmaLou/date-validation</a></p>
+
+<p>看页面(有点丑)：<a href="http://emalou.me/date-validation/">http://emalou.me/date-validation/</a></p>
+
+<p>为什么用js，不用高大上的angular？</p>
+
+<p>因为简单的js复用性高。只包含了验证是否为合法日期的代码，比较基础，可以cover大部分通用情况。</p>
+
+<h3>禁止用户输入大于12的月份</h3>
+
+<p>其实日期验证的功能，有很多特性可以加，比如<strong>禁止用户输入大于当年年月的日期</strong>，用angular的watch方法就很容易实现</p>
+
+<pre><code>.directive('validateMonth', function () {
+    return function (scope, element, attrs) {
+    scope.$watch(attrs.ngModel, function(newValue, oldValue) {
+        if (!newValue) {
+            return;
+        }
+        if (newValue &gt; 12) {
+            scope.customerDetail.month = oldValue;
+        }
+    })
+    };
+})
+</code></pre>
+
+<p>在directive上添加watch事件，可以禁止用户输入限定条件之外的内容。原理也很简单，当超过限制条件后，用旧的value替换新的value。</p>
+
+<p>替换速度很快，肉眼不可见，就达到了“禁止输入”的效果。</p>
+
+<h3>其它功能</h3>
+
+<p>还有一些跟日期输入有关的效果，类似onblur的时候自动补全0，输入两个数字后自动跳到下一个input输入框，不管使用jquery还是angular都很容易实现，此处不再赘述。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -149,7 +229,7 @@
 
 <p>异常处理的最后，finally处理那些不管发生什么都一定要被执行的代码。</p>
 
-<h3>二：Practice</h3>
+<h3>二：编写简单的自定义异常</h3>
 
 <p>在我们的代码中，如何使用异常呢。</p>
 
@@ -580,6 +660,10 @@ rake deploy 部署后就可以在自己的独立域名下看到github上的博�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/10/date-validation/">JavaScript实现的日期验证</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/18/talk-about-java-exception/">一些关于Java异常处理的概念</a>
       </li>
     
@@ -612,7 +696,7 @@ rake deploy 部署后就可以在自己的独立域名下看到github上的博�
     <a href="https://github.com/EmaLou">Github</a> •
     <a href="https://www.flickr.com/photos/ema_lou2013/">Flickr</a>
     <br/>
-  Copyright &copy; 2014 -  EmaLou <br/>
+  Copyright &copy; 2015 -  EmaLou <br/>
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
 	  
   </span>

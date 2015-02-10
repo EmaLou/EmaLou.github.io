@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - EmaLou&#8217;s Blog</title>
+  <title>JavaScript实现的日期验证 - EmaLou&#8217;s Blog</title>
   <meta name="author" content="EmaLou">
 
   
-  <meta name="description" content="Blog Archive 2015 JavaScript实现的日期验证
-February 10 2015 2014 一些关于Java异常处理的概念
-December 18 2014 浅谈 Angular Directive
-December 15 2014 使用ssh搭建本地git仓库 &hellip;">
+  <meta name="description" content="项目需要，最近在用angular做各种validation。 日期验证 这里分享一个日期验证。 github地址：https://github.com/EmaLou/date-validation 看页面(有点丑)：http://emalou.me/date-validation/ 为什么用js， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@ December 15 2014 使用ssh搭建本地git仓库 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://emalou.me/blog/archives">
+  <link rel="canonical" href="http://emalou.me/blog/2015/02/10/date-validation">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="EmaLou's Blog" type="application/atom+xml">
@@ -68,70 +65,129 @@ December 15 2014 使用ssh搭建本地git仓库 &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+  
+    
+      <h1 class="entry-title">JavaScript实现的日期验证</h1>
+    
+  
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-10T23:08:40+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>项目需要，最近在用angular做各种validation。</p>
 
-  
-  <h2>2015</h2>
+<hr />
 
-<article>
-  
-<h1><a href="/blog/2015/02/10/date-validation/">JavaScript实现的日期验证</a></h1>
-<time datetime="2015-02-10T23:08:40+08:00" pubdate><span class='month'>February</span> <span class='day'>10</span> <span class='year'>2015</span></time>
+<h3>日期验证</h3>
 
-</article>
+<p>这里分享一个日期验证。</p>
 
+<p>github地址：<a href="https://github.com/EmaLou/date-validation">https://github.com/EmaLou/date-validation</a></p>
 
+<p>看页面(有点丑)：<a href="http://emalou.me/date-validation/">http://emalou.me/date-validation/</a></p>
 
-  
-  <h2>2014</h2>
+<p>为什么用js，不用高大上的angular？</p>
 
-<article>
-  
-<h1><a href="/blog/2014/12/18/talk-about-java-exception/">一些关于Java异常处理的概念</a></h1>
-<time datetime="2014-12-18T00:38:45+08:00" pubdate><span class='month'>December</span> <span class='day'>18</span> <span class='year'>2014</span></time>
+<p>因为简单的js复用性高。只包含了验证是否为合法日期的代码，比较基础，可以cover大部分通用情况。</p>
 
-</article>
+<h3>禁止用户输入大于12的月份</h3>
 
+<p>其实日期验证的功能，有很多特性可以加，比如<strong>禁止用户输入大于当年年月的日期</strong>，用angular的watch方法就很容易实现</p>
 
+<pre><code>.directive('validateMonth', function () {
+    return function (scope, element, attrs) {
+    scope.$watch(attrs.ngModel, function(newValue, oldValue) {
+        if (!newValue) {
+            return;
+        }
+        if (newValue &gt; 12) {
+            scope.customerDetail.month = oldValue;
+        }
+    })
+    };
+})
+</code></pre>
 
-<article>
-  
-<h1><a href="/blog/2014/12/15/simple-angular-directive/">浅谈 Angular Directive</a></h1>
-<time datetime="2014-12-15T20:28:44+08:00" pubdate><span class='month'>December</span> <span class='day'>15</span> <span class='year'>2014</span></time>
+<p>在directive上添加watch事件，可以禁止用户输入限定条件之外的内容。原理也很简单，当超过限制条件后，用旧的value替换新的value。</p>
 
-</article>
+<p>替换速度很快，肉眼不可见，就达到了“禁止输入”的效果。</p>
 
+<h3>其它功能</h3>
 
-
-<article>
-  
-<h1><a href="/blog/2014/11/05/use-ssh-setup-local-git-repo/">使用ssh搭建本地git仓库</a></h1>
-<time datetime="2014-11-05T00:00:00+08:00" pubdate><span class='month'>November</span> <span class='day'>05</span> <span class='year'>2014</span></time>
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2014/10/15/octopress-plus-github-plus-private-domain/">使用Octopress搭建博客的那些坑</a></h1>
-<time datetime="2014-10-15T17:55:54+08:00" pubdate><span class='month'>October</span> <span class='day'>15</span> <span class='year'>2014</span></time>
-
-</article>
-
+<p>还有一些跟日期输入有关的效果，类似onblur的时候自动补全0，输入两个数字后自动跳到下一个input输入框，不管使用jquery还是angular都很容易实现，此处不再赘述。</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">EmaLou</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-10T23:08:40+08:00" pubdate data-updated="true"></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://emalou.me/blog/2015/02/10/date-validation/" data-via="" data-counturl="http://emalou.me/blog/2015/02/10/date-validation/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/18/talk-about-java-exception/" title="Previous Post: 一些关于Java异常处理的概念">&laquo; 一些关于Java异常处理的概念</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -192,7 +248,10 @@ December 15 2014 使用ssh搭建本地git仓库 &hellip;">
       var disqus_shortname = 'emalousblog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://emalou.me/blog/2015/02/10/date-validation/';
+        var disqus_url = 'http://emalou.me/blog/2015/02/10/date-validation/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

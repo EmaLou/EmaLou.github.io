@@ -4,7 +4,7 @@
   <title><![CDATA[EmaLou's Blog]]></title>
   <link href="http://emalou.me/atom.xml" rel="self"/>
   <link href="http://emalou.me/"/>
-  <updated>2014-12-21T14:57:32+08:00</updated>
+  <updated>2015-02-10T23:11:58+08:00</updated>
   <id>http://emalou.me/</id>
   <author>
     <name><![CDATA[EmaLou]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[JavaScript实现的日期验证]]></title>
+    <link href="http://emalou.me/blog/2015/02/10/date-validation/"/>
+    
+    <updated>2015-02-10T23:08:40+08:00</updated>
+    <id>http://emalou.me/blog/2015/02/10/date-validation</id>
+    
+    <content type="html"><![CDATA[<p>项目需要，最近在用angular做各种validation。</p>
+
+<hr />
+
+<h3>日期验证</h3>
+
+<p>这里分享一个日期验证。</p>
+
+<p>github地址：<a href="https://github.com/EmaLou/date-validation">https://github.com/EmaLou/date-validation</a></p>
+
+<p>看页面(有点丑)：<a href="http://emalou.me/date-validation/">http://emalou.me/date-validation/</a></p>
+
+<p>为什么用js，不用高大上的angular？</p>
+
+<p>因为简单的js复用性高。只包含了验证是否为合法日期的代码，比较基础，可以cover大部分通用情况。</p>
+
+<h3>禁止用户输入大于12的月份</h3>
+
+<p>其实日期验证的功能，有很多特性可以加，比如<strong>禁止用户输入大于当年年月的日期</strong>，用angular的watch方法就很容易实现</p>
+
+<pre><code>.directive('validateMonth', function () {
+    return function (scope, element, attrs) {
+    scope.$watch(attrs.ngModel, function(newValue, oldValue) {
+        if (!newValue) {
+            return;
+        }
+        if (newValue &gt; 12) {
+            scope.customerDetail.month = oldValue;
+        }
+    })
+    };
+})
+</code></pre>
+
+<p>在directive上添加watch事件，可以禁止用户输入限定条件之外的内容。原理也很简单，当超过限制条件后，用旧的value替换新的value。</p>
+
+<p>替换速度很快，肉眼不可见，就达到了“禁止输入”的效果。</p>
+
+<h3>其它功能</h3>
+
+<p>还有一些跟日期输入有关的效果，类似onblur的时候自动补全0，输入两个数字后自动跳到下一个input输入框，不管使用jquery还是angular都很容易实现，此处不再赘述。</p>
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -71,7 +124,7 @@
 
 <p>异常处理的最后，finally处理那些不管发生什么都一定要被执行的代码。</p>
 
-<h3>二：Practice</h3>
+<h3>二：编写简单的自定义异常</h3>
 
 <p>在我们的代码中，如何使用异常呢。</p>
 
