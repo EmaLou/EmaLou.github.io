@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS-从入门到放弃 - EmaLou&#8217;s Blog</title>
+  <meta name="author" content="EmaLou">
+
+  
+  <meta name="description" content="入门angular AngularJS是一个比较成熟的前端框架，笔者自己用过一段时间，还记得刚从刀耕火种的纯手写JS切换到当年还是高大上的angularJS的时候，兴奋程度无以复加，以前写20行的代码，后来只用两行，感觉世界都变得美好了。这里要说下20行代码是如何变成2行的（ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://emalou.me/blog/2016/10/10/angular-js-from-start-to-quit">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="EmaLou's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">EmaLou&#8217;s Blog</a></div>
+
+
+	<br><div class="header-subtitle">Hello World</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:emalou.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">AngularJS-从入门到放弃</h1>
+    
+  
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-10-10T10:29:11+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2><strong>入门angular</strong></h2>
+
+<p>AngularJS是一个比较成熟的前端框架，笔者自己用过一段时间，还记得刚从刀耕火种的纯手写JS切换到当年还是高大上的angularJS的时候，兴奋程度无以复加，以前写20行的代码，后来只用两行，感觉世界都变得美好了。这里要说下20行代码是如何变成2行的（熟悉angular的客官们请移步“放弃”阶段）</p>
+
+<p>angularJS是一个<strong>前端MVVM</strong>（Model-View-ViewModel）框架，实现了数据、视图、逻辑的分离。来看一个例子：</p>
+
+<pre><code>    index.html
+    &lt;div&gt;
+        &lt;p&gt;dinner: 
+    &lt;/div&gt;
+
+
+    controller.js
+    function cookbookController($scope) {
+        $scope.cookbook = {potato: '酸辣土豆丝'};
+    }
+
+    output:
+    dinner: 酸辣土豆丝
+</code></pre>
+
+<p>html的部分就是一个简单的视图层，而controller.js中的cookbook就是model-存储数据的地方，本例中逻辑很简单，所以并没有发挥controller的作用。但实际开发中，由于网页中功能庞杂，且与后台交互越来越密切，所以controller中的逻辑复杂程度丝毫不亚于后端。</p>
+
+<p>angular还有一个重要的功能是<strong>双向绑定</strong> - 同一个变量，不管在页面中还是在js中对它进行修改，其更改都会在另一方生效。如上例所示，如果controller中的cookbook增加了一个菜谱，或者修改了原有的菜谱，其修改都会立刻反应到前端页面。</p>
+
+<p>当应用程序需要前后端交互的时候，使用angular无疑是一个很好的选则。试想一下，当你需要在前端页面操作一些东西，而操作的内容需要实时同步到服务端并写入数据库，用angular就可以这样实现</p>
+
+<pre><code>    index.html:
+    &lt;div&gt;
+       &lt;input ng-change="syncToServer()"&gt; &lt;/input&gt;
+    &lt;/div&gt;
+
+    controller.js:
+    $scope.syncToServer = function(){
+        $http.post('/serverUrl', $scope.text, config).then(successCallback, errorCallback);
+    }
+</code></pre>
+
+<p>简单起见，这里并没有将service的部分从controller中抽出来，在实际开发中，一般会将service的部分抽出来放在一个单独的js文件中，这样做是为了让前端业务逻辑和与后台交互的部分分开。同时，angular中的service的逻辑都比较简单，很多时候只是为了给后台发请求，这种时候单独的service可以大大提高代码复用性。</p>
+
+<p>这里的<strong>ng-change</strong>是angular提供的<strong>directive</strong>，它可以监测当前元素的变化，并在元素发生变化的时候调用syncToServer函数，从而实现数据同步。类似的，angular还实现了很多其它directive帮我们做各种常用的工作，常用的有：</p>
+
+<ul>
+<li>ng-bind: 将scope中的变量绑定到页面上</li>
+<li>ng-controller: 绑定controller到当前元素</li>
+<li>ng-repeat: 监测循环，需要更新列表的时候很方便</li>
+<li>ng-click: 监测点击事件</li>
+<li>ng-class: 绑定CSS class</li>
+<li>ng-focus: 监测focus事件</li>
+</ul>
+
+
+<p>更多内容，请参考angular <a href="https://docs.angularjs.org/api/ng/directive/">官方文档</a></p>
+
+<p>除了强大的默认directive，angular还支持自定义directive，这个功能让angular如虎添翼，你可以写出自己的“HTML元素”！</p>
+
+<p>除此之外，angular还有很多好用的插件，比如选色器，日历等，用的时候再网上下一个，还是很方便的。</p>
+
+<p>可见，angularJS的功能确实强大，所以当前段时间需要起一个有很多前端交互功能更的新项目时，前端部分首选的就是angular。</p>
+
+<h2><strong>放弃angular</strong></h2>
+
+<p>在搭完前端框架之后，使用angular开发，起初觉得很好用，大家都在飞速的写各种directive，让代码模块化。一片欣欣向荣的景象。但是在项目第一个MVP release之后，开始加新功能的时候，隐隐觉得有些吃力&hellip;</p>
+
+<h4><strong>directive不那么好用了</strong></h4>
+
+<p>为了将各种大大小小的功能模块化，我们写了大量directive，其中不乏嵌套directive（在一个directive中使用另一个directive）。那么这时就牵扯到变量在directive中互相传递的问题，所以当一个父directive中的变量需要在子directive中执行一些操作，并将操作结果返回到父directive时，代码就变得复杂了，逻辑也更难以掌控了。</p>
+
+<p>为了让代码更加模块化，基本每一个directive都会配备一个controller来处理其相应的逻辑。对于功能类似的模块来说，不仅directive“看似”重复，controller也看似重复。</p>
+
+<p>同时，大量的directive也增加了查找和添加新directive的难度。</p>
+
+<h4><strong>controller太过复杂</strong></h4>
+
+<p>由于前端逻辑复杂，controller的数量不仅巨大，而且互相之间交互也很多，经常会有变量在两到三个controller中互相传递做交互，这么一来，我们会发现一个变量在多个地方被修改，而一个地方的修改依赖另一个地方的修改，原本模块化的代码变得耦合度很高。</p>
+
+<h4><strong>效率问题开始出现</strong></h4>
+
+<p>还记得上面讲到的很多angular提供的好用的directive吗？起初用起来很方便，但如果代码中充斥着大量的ng-xx,执行效率会变得很低。其原因就在于，每个ng-xx背后都有一个监听事件，它会监听浏览器中事件的变化，然后修改对应的model，调用对应的事件。我们都知道，写js的时候要尽量少用监听事件，因为这些监听事件都会不断消耗浏览器的资源。在angular中，每触发一个事件，背后都可能调用了上百个函数，执行效率和自然会降低，尤其是当有很多这样的监听事件的时候。</p>
+
+<p>经验教训告诉我们，当前后端有大量数据交互，并且前端逻辑及其复杂的情况下，一定要小心谨慎的使用angular，多问自己为什么。也许当前的实践并不是最好的，follow下去会让项目越来越难以维护。</p>
+
+<h2><strong>怎么才能不放弃angular?</strong></h2>
+
+<p>为了更好在项目中使用angularJS这个强大的工具，在开发中要注意：</p>
+
+<ul>
+<li>controller中的功能要尽量独立，防止后期功能太复杂加强controller之间的耦合</li>
+<li>减少双向绑定（eg：当需要显示一些不会改变的内容，如title，dashboard等，尽量不用双向绑定，angularjs在1.3之后的版本中加入了单次绑定的功能，通过可以实现单次绑定。这样可以减少数据监听，提升性能。）</li>
+<li>在需要多个controller对同一个数据进行修改的时候，可以使用service来存储数据，而每个需要修改数据的controller只是简单的从service中读取数据，修改，再放回service</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">EmaLou</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-10-10T10:29:11+08:00" pubdate data-updated="true"></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://emalou.me/blog/2016/10/10/angular-js-from-start-to-quit/" data-via="" data-counturl="http://emalou.me/blog/2016/10/10/angular-js-from-start-to-quit/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/07/06/simple-understanding-of-refactor/" title="Previous Post: 浅谈重构">&laquo; 浅谈重构</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/10/angular-js-from-start-to-quit/">AngularJS-从入门到放弃</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/06/simple-understanding-of-refactor/">浅谈重构</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/11/tooltip-on-mobile/">Bootstrap中的tooltip 手机端显示</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/10/date-validation/">JavaScript实现的日期验证</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/18/talk-about-java-exception/">一些关于Java异常处理的概念</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+	<a href="https://twitter.com/LouJia3">Twitter</a> •
+    <a href="https://github.com/EmaLou">Github</a> •
+    <a href="https://www.flickr.com/photos/ema_lou2013/">Flickr</a>
+    <br/>
+  Copyright &copy; 2016 -  EmaLou <br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+  </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'emalousblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://emalou.me/blog/2016/10/10/angular-js-from-start-to-quit/';
+        var disqus_url = 'http://emalou.me/blog/2016/10/10/angular-js-from-start-to-quit/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
